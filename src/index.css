@@ -1,3 +1,14 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@400;600;700&family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* ChenYuluoyan Font Family */
+@font-face {
+    font-family: 'ChenYuluoyan';
+    src: url('/fonts/chenyuluoyan_thin-main/ChenYuluoyan-2.0-Thin.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 /* ========================================
    FROST PURSUIT - Design System
    React + TypeScript Version
@@ -60,8 +71,7 @@
     font-style: normal;
 }
 
-/* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;500&family=Inter:wght@300;400;500;600&family=Open+Sans:wght@400;600;700&family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+
 
 /* CSS Variables - Cyan Palette */
 :root {
@@ -457,6 +467,131 @@ ul {
 
 .nav-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Language Toggle in Navbar */
+.nav-lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.5rem;
+}
+
+.nav-lang-toggle button {
+    font-family: 'Liliana', var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    position: relative;
+    opacity: 0.6;
+    transition: var(--transition-fast);
+}
+
+.nav-lang-toggle button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--white);
+    transition: var(--transition-fast);
+}
+
+.nav-lang-toggle button:hover {
+    opacity: 1;
+}
+
+.nav-lang-toggle button:hover::after {
+    width: 80%;
+}
+
+.nav-lang-toggle button.active {
+    opacity: 1;
+}
+
+.nav-lang-toggle button.active::after {
+    width: 80%;
+}
+
+.nav-lang-toggle .lang-sep {
+    color: var(--white);
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+/* Scrolled navbar - dark text for lang toggle */
+.navbar.scrolled .nav-lang-toggle button {
+    color: var(--frost-deep);
+}
+
+.navbar.scrolled .nav-lang-toggle button::after {
+    background: var(--frost-accent);
+}
+
+.navbar.scrolled .nav-lang-toggle .lang-sep {
+    color: var(--frost-deep);
+}
+
+/* Hover navbar - dark text for lang toggle */
+.navbar:hover .nav-lang-toggle button {
+    color: var(--frost-deep);
+}
+
+.navbar:hover .nav-lang-toggle button::after {
+    background: var(--frost-accent);
+}
+
+.navbar:hover .nav-lang-toggle .lang-sep {
+    color: var(--frost-deep);
+}
+
+/* Redstone theme - white text */
+.navbar.redstone-theme .nav-lang-toggle button {
+    color: var(--white);
+}
+
+.navbar.redstone-theme .nav-lang-toggle button::after {
+    background: var(--white);
+}
+
+.navbar.redstone-theme .nav-lang-toggle .lang-sep {
+    color: var(--white);
+}
+
+.navbar.redstone-theme:hover .nav-lang-toggle button {
+    color: var(--white);
+}
+
+.navbar.redstone-theme:hover .nav-lang-toggle button::after {
+    background: var(--white);
+}
+
+/* Cyan theme - white text */
+.navbar.cyan-theme .nav-lang-toggle button {
+    color: var(--white);
+}
+
+.navbar.cyan-theme .nav-lang-toggle button::after {
+    background: var(--white);
+}
+
+.navbar.cyan-theme .nav-lang-toggle .lang-sep {
+    color: var(--white);
+}
+
+.navbar.cyan-theme:hover .nav-lang-toggle button {
+    color: var(--white);
+}
+
+.navbar.cyan-theme:hover .nav-lang-toggle button::after {
+    background: var(--white);
 }
 
 /* Mobile Navigation Styles */
@@ -938,12 +1073,14 @@ ul {
     height: 56.25vw;
     z-index: 3;
     pointer-events: none;
+    --map-scale: 0.052083vw;
 }
 
 @media (max-aspect-ratio: 16/9) {
     .hero-hotspots-layer {
         width: 177.78vh;
         height: 100vh;
+        --map-scale: 0.092593vh;
     }
 }
 
@@ -1270,8 +1407,8 @@ ul {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 24px;
-    height: 32px;
+    width: calc(24 * var(--map-scale));
+    height: calc(32 * var(--map-scale));
     cursor: none;
     animation: waypointBouncePeriodic 4s ease-in-out infinite;
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -1299,19 +1436,20 @@ ul {
 
 /* Map pin head */
 /* Map pin head */
+/* Map pin head */
 .waypoint-marker::before {
     content: '';
     position: absolute;
-    top: -210px;
+    top: calc(-210 * var(--map-scale));
     left: 50%;
     transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
+    width: calc(20 * var(--map-scale));
+    height: calc(20 * var(--map-scale));
     background: rgba(255, 255, 255, 0.9);
-    border: 3px solid var(--white);
+    border: calc(3 * var(--map-scale)) solid var(--white);
     border-radius: 50% 50% 50% 0;
     transform: translateX(-50%) rotate(-45deg);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 calc(2 * var(--map-scale)) calc(8 * var(--map-scale)) rgba(0, 0, 0, 0.3);
     opacity: 85%;
 }
 
@@ -1319,11 +1457,11 @@ ul {
 .waypoint-marker::after {
     content: '';
     position: absolute;
-    top: -205px;
+    top: calc(-205 * var(--map-scale));
     left: 50%;
     transform: translateX(-50%);
-    width: 8px;
-    height: 8px;
+    width: calc(8 * var(--map-scale));
+    height: calc(8 * var(--map-scale));
     background: var(--frost-deep);
     border-radius: 50%;
     z-index: 1;
@@ -1340,11 +1478,11 @@ ul {
     }
 
     5% {
-        transform: translateX(-50%) translateY(-8px);
+        transform: translateX(-50%) translateY(calc(-8 * var(--map-scale)));
     }
 
     15% {
-        transform: translateX(-50%) translateY(-4px);
+        transform: translateX(-50%) translateY(calc(-4 * var(--map-scale)));
     }
 }
 
@@ -2317,6 +2455,30 @@ ul {
     font-weight: 600;
 }
 
+.redstone-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1.8rem;
+    font-family: 'Liliana', var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    color: #c41e3a;
+    border: 3.5px solid #c41e3a;
+    background: transparent;
+    transition: var(--transition-base);
+    margin-top: var(--space-md);
+    text-decoration: none;
+}
+
+.redstone-cta:hover {
+    background: #c41e3a;
+    color: var(--white);
+    border-color: #c41e3a;
+}
+
 @media (max-width: 900px) {
     .redstone-layout {
         grid-template-columns: 1fr;
@@ -3003,4 +3165,622 @@ ul {
     font-size: 1rem;
     letter-spacing: 2px;
     margin-top: 0.5rem;
+}
+
+/* ========================================
+   TECHNICAL BLOG STYLES
+   ======================================== */
+
+.blog-main {
+    background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+.blog-article {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-md) var(--space-xl);
+}
+
+/* Language Toggle */
+.blog-lang-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    margin-bottom: var(--space-sm);
+}
+
+.blog-lang-toggle button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.blog-lang-toggle button:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.blog-lang-toggle button.active {
+    background: rgba(196, 30, 58, 0.2);
+    color: #c41e3a;
+}
+
+.lang-divider {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.85rem;
+}
+
+/* Chinese Language Specific Styles */
+.lang-zh .blog-hero h1,
+.lang-zh .blog-section h2,
+.lang-zh .blog-toc h2 {
+    font-family: 'ChenYuluoyan', 'Noto Serif TC', serif;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.lang-zh .blog-section h3,
+.lang-zh .blog-card h4,
+.lang-zh .credits-grid h4 {
+    font-family: 'ChenYuluoyan', 'Noto Serif TC', serif;
+    font-weight: 400;
+}
+
+.lang-zh .blog-section p,
+.lang-zh .blog-list li,
+.lang-zh .blog-step>div,
+.lang-zh .blog-callout,
+.lang-zh .blog-card p,
+.lang-zh .blog-subtitle,
+.lang-zh .blog-lead,
+.lang-zh .blog-toc a,
+.lang-zh .blog-figure figcaption {
+    font-family: 'Noto Serif TC', serif;
+}
+
+/* English Language Specific Styles */
+.lang-en .blog-section p,
+.lang-en .blog-list li,
+.lang-en .blog-step>div,
+.lang-en .blog-callout,
+.lang-en .blog-card p,
+.lang-en .blog-subtitle,
+.lang-en .blog-lead,
+.lang-en .blog-figure figcaption {
+    font-family: 'Noto Serif', serif;
+}
+
+/* Back Button */
+.blog-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: var(--space-md);
+}
+
+.blog-back-btn:hover {
+    color: white;
+    border-color: #c41e3a;
+    background: rgba(196, 30, 58, 0.1);
+}
+
+.back-arrow {
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+}
+
+.blog-back-btn:hover .back-arrow {
+    transform: translateX(-3px);
+}
+
+/* Blog Hero */
+.blog-hero {
+    text-align: center;
+    padding: var(--space-xl) 0 var(--space-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: var(--space-lg);
+}
+
+.blog-category {
+    display: inline-block;
+    background: linear-gradient(135deg, #c41e3a, #8b0000);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+}
+
+.blog-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    color: white;
+    margin: var(--space-sm) 0;
+    line-height: 1.1;
+}
+
+.blog-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto var(--space-md);
+    line-height: 1.6;
+}
+
+.blog-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.meta-divider {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Table of Contents */
+.blog-toc {
+    background: rgba(196, 30, 58, 0.08);
+    border: 1px solid rgba(196, 30, 58, 0.2);
+    border-radius: 12px;
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.blog-toc h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #c41e3a;
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.blog-toc ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    margin: 0;
+}
+
+.blog-toc li {
+    margin: 0.5rem 0;
+}
+
+.blog-toc a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.blog-toc a:hover {
+    color: #c41e3a;
+}
+
+/* Blog Sections */
+.blog-section {
+    margin-bottom: var(--space-xl);
+}
+
+.blog-section h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid #c41e3a;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: linear-gradient(135deg, #c41e3a, #8b0000);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+.blog-section h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #e57373;
+    margin: var(--space-md) 0 var(--space-sm);
+}
+
+.blog-section p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: var(--space-sm);
+}
+
+.blog-lead {
+    font-size: 1.15rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border-left: 3px solid #c41e3a;
+    padding-left: var(--space-sm);
+    margin-bottom: var(--space-md) !important;
+}
+
+/* Figures */
+.blog-figure {
+    margin: var(--space-md) 0;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.blog-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.blog-figure figcaption {
+    padding: 0.75rem var(--space-sm);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.fig-num {
+    color: #c41e3a;
+    font-weight: 600;
+}
+
+/* Image Grids */
+.blog-image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+    margin: var(--space-md) 0;
+}
+
+/* Callouts */
+.blog-callout {
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 8px;
+    margin: var(--space-md) 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.blog-callout-info {
+    background: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid #3b82f6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.blog-callout-warning {
+    background: rgba(245, 158, 11, 0.1);
+    border-left: 4px solid #f59e0b;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Code Blocks */
+.blog-section code {
+    background: rgba(196, 30, 58, 0.15);
+    color: #f87171;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+.blog-code {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: var(--space-sm) var(--space-md);
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    white-space: pre;
+    margin: var(--space-sm) 0 var(--space-md);
+}
+
+/* Lists */
+.blog-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-sm) 0 var(--space-md);
+}
+
+.blog-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin: 0.75rem 0;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+.blog-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #c41e3a;
+    font-weight: bold;
+}
+
+/* Steps */
+.blog-steps {
+    margin: var(--space-md) 0;
+}
+
+.blog-step {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    padding: var(--space-sm);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: linear-gradient(135deg, #c41e3a, #8b0000);
+    color: white;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.blog-step>div {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+/* Cards Grid */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-sm);
+    margin: var(--space-md) 0;
+}
+
+.blog-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: var(--space-sm);
+}
+
+.blog-card h4 {
+    color: #e57373;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.blog-card p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Credits */
+.blog-credits {
+    text-align: center;
+    background: rgba(196, 30, 58, 0.05);
+    border: 1px solid rgba(196, 30, 58, 0.15);
+    border-radius: 16px;
+    padding: var(--space-lg);
+}
+
+.credits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.credits-grid h4 {
+    color: #c41e3a;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+}
+
+.credits-grid p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.blog-footer-note {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: var(--space-sm);
+}
+
+.blog-footer-note a {
+    color: #c41e3a;
+    text-decoration: underline;
+}
+
+/* Learn More Button */
+.blog-learn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: var(--space-md);
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 2px solid #c41e3a;
+    border-radius: 8px;
+    color: #c41e3a;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.blog-learn-more:hover {
+    background: #c41e3a;
+    color: white;
+}
+
+.blog-learn-more .cta-arrow {
+    transition: transform 0.3s ease;
+}
+
+.blog-learn-more:hover .cta-arrow {
+    transform: translateX(4px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .blog-hero {
+        padding: var(--space-lg) 0 var(--space-md);
+    }
+
+    .blog-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .section-num {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    .blog-image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===========================
+   Chinese Language Font Styles
+   =========================== */
+
+/* Hero title for Chinese - use ChenYuluoyan with larger size */
+[data-lang="zh"] .hero-title .title-frost,
+[data-lang="zh"] .hero-title .title-pursuit {
+    font-family: 'ChenYuluoyan', 'Noto Sans TC', sans-serif;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: -0.05em;
+}
+
+/* Section headings use Noto Sans for Chinese */
+[data-lang="zh"] .highlights-title,
+[data-lang="zh"] .total-label,
+[data-lang="zh"] .card-title,
+[data-lang="zh"] .gallery-title {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
+}
+
+/* Redstone section title stays serif for Chinese */
+[data-lang="zh"] .redstone-title {
+    font-family: 'Noto Serif TC', 'Noto Serif', serif !important;
+}
+
+/* Redstone "技術" word styling for Chinese - serif */
+[data-lang="zh"] .redstone-title-technical {
+    font-family: 'Noto Serif TC', 'Noto Serif', serif !important;
+    font-weight: 700;
+}
+
+/* Redstone subtitle and body - sans-serif */
+[data-lang="zh"] .redstone-subtitle {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
+    font-style: normal;
+}
+
+[data-lang="zh"] .redstone-belief {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
+}
+
+[data-lang="zh"] .redstone-description {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
+}
+
+[data-lang="zh"] .redstone-current-label {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
+}
+
+/* Highlights subtitles and descriptions */
+[data-lang="zh"] .highlights-subtitle,
+[data-lang="zh"] .gallery-description {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
+}
+
+/* Block names and labels */
+[data-lang="zh"] .block-name,
+[data-lang="zh"] .total-count {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
+}
+
+/* CTA buttons for Chinese */
+[data-lang="zh"] .hero-cta,
+[data-lang="zh"] .redstone-cta,
+[data-lang="zh"] .nav-cta {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
+}
+
+/* Footer Chinese styling - use ChenYuluoyan for brand name "冰寒追霜" */
+[data-lang="zh"] .footer-brand p,
+[data-lang="zh"] .footer-bottom p {
+    font-family: 'ChenYuluoyan', 'Noto Sans TC', sans-serif;
+}
+
+/* Hero subtitle for Chinese - use Noto Serif */
+[data-lang="zh"] .hero-subtitle {
+    font-family: 'Noto Serif TC', 'Noto Serif', serif;
+}
+
+/* Nav links for Chinese */
+[data-lang="zh"] .nav-links a {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
+}
+
+/* Language toggle for Chinese */
+[data-lang="zh"] .nav-lang-toggle button {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
+}
+
+/* Footer links for Chinese */
+[data-lang="zh"] .footer-links a {
+    font-family: 'Noto Sans TC', 'Noto Sans', sans-serif !important;
 }

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface NavbarProps {
     logoSrc?: string;
 }
 
 export function Navbar({ logoSrc = `${import.meta.env.BASE_URL}images/logo 1.PNG` }: NavbarProps) {
+    const { lang, setLang, t } = useLanguage();
     const [scrolled, setScrolled] = useState(false);
     const [currentTheme, setCurrentTheme] = useState<'default' | 'cyan' | 'redstone'>('default');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -56,11 +58,27 @@ export function Navbar({ logoSrc = `${import.meta.env.BASE_URL}images/logo 1.PNG
                 <a href="https://mc-ctec.org/" className="nav-logo" target="_blank" rel="noopener noreferrer">
                     <img src={logoSrc} alt="Frost Pursuit" className="logo-img" />
                 </a>
+
                 <ul className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
-                    <li><a href="#showcase" onClick={handleLinkClick}>showcase</a></li>
-                    <li><a href="#highlights" onClick={handleLinkClick}>highlights</a></li>
-                    <li><a href="#redstone" onClick={handleLinkClick}>redstone</a></li>
-                    <li><a href="https://www.planetminecraft.com/project/free-to-download-frost-pursuit-a-1k-x-1k-winter-ice-boat-race-map-vanilla-1-20-1/" className="nav-cta" target="_blank" rel="noopener noreferrer" onClick={handleLinkClick}>download</a></li>
+                    <li><a href="#showcase" onClick={handleLinkClick}>{t.nav.showcase}</a></li>
+                    <li><a href="#highlights" onClick={handleLinkClick}>{t.nav.highlights}</a></li>
+                    <li><a href="#redstone" onClick={handleLinkClick}>{t.nav.redstone}</a></li>
+                    <li><a href="https://www.planetminecraft.com/project/free-to-download-frost-pursuit-a-1k-x-1k-winter-ice-boat-race-map-vanilla-1-20-1/" className="nav-cta" target="_blank" rel="noopener noreferrer" onClick={handleLinkClick}>{t.nav.download}</a></li>
+                    <li className="nav-lang-toggle">
+                        <button
+                            className={lang === 'en' ? 'active' : ''}
+                            onClick={() => setLang('en')}
+                        >
+                            EN
+                        </button>
+                        <span className="lang-sep">/</span>
+                        <button
+                            className={lang === 'zh' ? 'active' : ''}
+                            onClick={() => setLang('zh')}
+                        >
+                            繁中
+                        </button>
+                    </li>
                 </ul>
                 <button className={`nav-toggle ${mobileMenuOpen ? 'active' : ''}`} aria-label="Toggle menu" onClick={handleMenuToggle}>
                     <span></span>
@@ -71,4 +89,3 @@ export function Navbar({ logoSrc = `${import.meta.env.BASE_URL}images/logo 1.PNG
         </nav>
     );
 }
-

@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface HeroProps {
     backgroundImage?: string;
@@ -9,15 +10,16 @@ const CELL_SIZE = 50; // Fixed 50x50 pixel squares
 
 // Hotspot bounds as percentages of the wrapper
 const HOTSPOTS = [
-    { id: 'spectator-loft', top: 0.40, left: 0.27, width: 0.25, height: 0.25, label: 'Spectator Loft' },
-    { id: 'main-lounge', top: 0.21, left: 0.495, width: 0.20, height: 0.20, label: 'Main Lounge' },
-    { id: 'cable-car', top: 0.85, left: 0.75, width: 0.15, height: 0.20, label: 'Cable Car' },
+    { id: 'spectator-loft', top: 0.40, left: 0.27, width: 0.25, height: 0.25 },
+    { id: 'main-lounge', top: 0.21, left: 0.495, width: 0.20, height: 0.20 },
+    { id: 'cable-car', top: 0.85, left: 0.75, width: 0.15, height: 0.20 },
 ];
 
 export function Hero({
     backgroundImage = `${import.meta.env.BASE_URL}images/render frost pursuit.webp`,
     logoSrc = `${import.meta.env.BASE_URL}images/logo 2.png`
 }: HeroProps) {
+    const { t } = useLanguage();
     const [isLoading, setIsLoading] = useState(true);
     const [isTextHidden, setIsTextHidden] = useState(false);
     const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null);
@@ -172,30 +174,28 @@ export function Hero({
                     {/* Hotspot for Spectator Loft (left building) */}
                     <div className={`hero-hotspot spectator-loft-hotspot ${hoveredHotspot === 'spectator-loft' ? 'hovered' : ''}`}>
                         <span className="waypoint-marker spectator-loft-marker"></span>
-                        <span className="hotspot-tooltip">Spectator Loft</span>
+                        <span className="hotspot-tooltip">{t.hero.hotspots['spectator-loft']}</span>
                     </div>
                     {/* Hotspot for Main Lounge (right building) */}
                     <div className={`hero-hotspot main-lounge-hotspot ${hoveredHotspot === 'main-lounge' ? 'hovered' : ''}`}>
                         <span className="waypoint-marker main-lounge-marker"></span>
-                        <span className="hotspot-tooltip">Main Lounge</span>
+                        <span className="hotspot-tooltip">{t.hero.hotspots['main-lounge']}</span>
                     </div>
                     {/* Hotspot for Cable Car */}
                     <div className={`hero-hotspot cable-car-hotspot ${hoveredHotspot === 'cable-car' ? 'hovered' : ''}`}>
                         <span className="waypoint-marker cable-car-marker"></span>
-                        <span className="hotspot-tooltip">Cable Car</span>
+                        <span className="hotspot-tooltip">{t.hero.hotspots['cable-car']}</span>
                     </div>
                 </div>
             </div>
             <div className={`hero-content ${isTextHidden ? 'hidden' : ''}`}>
                 <div className="hero-title">
-                    <span className="title-frost">Frost</span>
-                    <span className="title-pursuit">Pursuit</span>
+                    <span className="title-frost">{t.hero.titleLine1}</span>
+                    <span className="title-pursuit">{t.hero.titleLine2}</span>
                 </div>
-                <p className="hero-subtitle">
-                    The Ultimate Ice<br />Boat Racing.
-                </p>
+                <p className="hero-subtitle" dangerouslySetInnerHTML={{ __html: t.hero.subtitle }}></p>
                 <a href="https://www.planetminecraft.com/project/free-to-download-frost-pursuit-a-1k-x-1k-winter-ice-boat-race-map-vanilla-1-20-1/" className="hero-cta" target="_blank" rel="noopener noreferrer">
-                    Download Map <span className="cta-arrow">▷</span>
+                    {t.hero.cta} <span className="cta-arrow">▷</span>
                 </a>
             </div>
             <div className="hero-bottom-logo">
