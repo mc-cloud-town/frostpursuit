@@ -3183,13 +3183,19 @@ ul {
     padding: 0 var(--space-md) var(--space-xl);
 }
 
+/* Header Row: Back Button + Language Toggle */
+.blog-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+}
+
 /* Language Toggle */
 .blog-lang-toggle {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     gap: 0.25rem;
-    margin-bottom: var(--space-sm);
 }
 
 .blog-lang-toggle button {
@@ -3219,19 +3225,26 @@ ul {
 }
 
 /* Chinese Language Specific Styles */
-.lang-zh .blog-hero h1,
-.lang-zh .blog-section h2,
-.lang-zh .blog-toc h2 {
-    font-family: 'ChenYuluoyan', 'Noto Serif TC', serif;
+/* Main title uses ChenYuluoyan */
+.lang-zh .blog-hero h1 {
+    font-family: 'ChenYuluoyan', 'Noto Sans TC', sans-serif;
     font-weight: 400;
     letter-spacing: 0.05em;
+}
+
+/* Section headings use Noto Sans TC */
+.lang-zh .blog-section h2,
+.lang-zh .blog-toc h2 {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
 }
 
 .lang-zh .blog-section h3,
 .lang-zh .blog-card h4,
 .lang-zh .credits-grid h4 {
-    font-family: 'ChenYuluoyan', 'Noto Serif TC', serif;
-    font-weight: 400;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 600;
 }
 
 .lang-zh .blog-section p,
@@ -3247,6 +3260,7 @@ ul {
 }
 
 /* English Language Specific Styles */
+
 .lang-en .blog-section p,
 .lang-en .blog-list li,
 .lang-en .blog-step>div,
@@ -3255,7 +3269,7 @@ ul {
 .lang-en .blog-subtitle,
 .lang-en .blog-lead,
 .lang-en .blog-figure figcaption {
-    font-family: 'Noto Serif', serif;
+    font-family: 'Inter', 'Noto Serif', serif;
 }
 
 /* Back Button */
@@ -3270,7 +3284,6 @@ ul {
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     transition: all 0.2s ease;
-    margin-bottom: var(--space-md);
 }
 
 .blog-back-btn:hover {

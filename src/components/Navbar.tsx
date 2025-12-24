@@ -3,17 +3,21 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 interface NavbarProps {
     logoSrc?: string;
+    forceTheme?: 'default' | 'cyan' | 'redstone';
 }
 
-export function Navbar({ logoSrc = `${import.meta.env.BASE_URL}images/logo 1.PNG` }: NavbarProps) {
+export function Navbar({ logoSrc = `${import.meta.env.BASE_URL}images/logo 1.PNG`, forceTheme }: NavbarProps) {
     const { lang, setLang, t } = useLanguage();
     const [scrolled, setScrolled] = useState(false);
-    const [currentTheme, setCurrentTheme] = useState<'default' | 'cyan' | 'redstone'>('default');
+    const [currentTheme, setCurrentTheme] = useState<'default' | 'cyan' | 'redstone'>(forceTheme || 'default');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
+
+            // Skip theme detection if forceTheme is set
+            if (forceTheme) return;
 
             const navbarHeight = 80;
 
@@ -40,7 +44,7 @@ export function Navbar({ logoSrc = `${import.meta.env.BASE_URL}images/logo 1.PNG
         window.addEventListener('scroll', handleScroll);
         handleScroll(); // Initial check
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [forceTheme]);
 
     const themeClass = currentTheme !== 'default' ? `${currentTheme}-theme` : '';
 
