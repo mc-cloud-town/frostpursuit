@@ -113,11 +113,11 @@ export const translations = {
                 },
                 '3-Layer Timer with Shift Registers': {
                     label: '3-Layer Timer with Shift Registers',
-                    description: 'A high-precision clock down to the seconds. Uses synchronous carry logic to prevent display ghosting.'
+                    description: 'A high-precision clock down to the seconds. Uses synchronous carry logic to avoid timing inconsistencies.'
                 },
-                '3-bit Adder': {
-                    label: '3-bit Adder',
-                    description: 'A logic component used within the timer and calculation modules to handle binary additions and signal processing.'
+                'Carry Processor': {
+                    label: 'Carry Processor',
+                    description: 'Converts stored complement codes into signals compatible with the 7-segment display units.'
                 },
                 'Insertion Sort Module': {
                     label: 'Insertion Sort Module',
@@ -155,8 +155,8 @@ export const translations = {
                     label: '10-item Simple Reverser',
                     description: 'A utility module that reverses item streams, used for organizing data or resetting system states.'
                 },
-                'Process Manager (Priority Queue Based)': {
-                    label: 'Process Manager (Priority Queue Based)',
+                'Priority Manager': {
+                    label: 'Priority Manager',
                     description: 'Prevents logic conflicts by queuing tasks like queries, inputs, and syncs, ensuring only one runs at a time.'
                 },
                 'Modular Display Unit': {
@@ -165,7 +165,7 @@ export const translations = {
                 },
                 'Low-Latency Comparator Chain Unit': {
                     label: 'Low-Latency Comparator Chain Unit',
-                    description: 'Uses comparator logic to transmit analog signals instantly over vertical distances, bypassing standard redstone delay.'
+                    description: 'Uses comparator logic to transmit analog signals at 200 Blocks per Second (BPS) over horizontal distances, bypassing standard redstone delay.'
                 },
                 'Latency-Free Analog Downlink (BED Encoded)': {
                     label: 'Latency-Free Analog Downlink (BED Encoded)',
@@ -203,7 +203,7 @@ export const translations = {
         hero: {
             titleLine1: '冰寒',
             titleLine2: '追霜',
-            subtitle: '突破极限的<br />冰船赛道',
+            subtitle: '突破極限的<br />冰船賽道',
             cta: '下載地圖',
             loading: '正在載入冰寒追霜...',
             hotspots: {
@@ -219,7 +219,7 @@ export const translations = {
             blocks: '方塊',
             footnote: '*已針對SMP調整',
             viewIsometric: '等距視圖',
-            viewNoBalloons: '無氣球',
+            viewNoBalloons: '無熱氣球',
             viewTopDown: '俯視圖',
             blockNames: {
                 'Packed Ice': '浮冰',
@@ -227,7 +227,7 @@ export const translations = {
                 'Light Blue Concrete Powder': '淺藍色混凝土粉末',
                 'Stone': '石頭',
                 'Acacia Log': '相思木原木',
-                'Tuff': '凝灰�ite',
+                'Tuff': '凝灰岩',
                 'Snow': '雪',
                 'Barrier': '屏障',
                 'Deepslate': '深板岩',
@@ -237,7 +237,7 @@ export const translations = {
         // Map Highlights
         highlights: {
             sectionTitle: '地圖亮點',
-            sectionSubtitle: '遊戲內截圖',
+            sectionSubtitle: '遊戲截圖',
             dayMode: '日間',
             nightMode: '夜間',
             cards: {
@@ -247,7 +247,7 @@ export const translations = {
                 },
                 'main-lounge': {
                     title: '主大廳',
-                    description: '温馨的聚會空間，供玩家在比賽間歇放髆和社交。'
+                    description: '溫馨的聚會空間，供玩家在比賽間歇放鬆和社交。'
                 },
                 'spectator-loft': {
                     title: '觀眾席',
@@ -269,10 +269,10 @@ export const translations = {
         },
         // Redstone Section
         redstone: {
-            sectionTitle: '引进',
+            sectionTitle: '引進',
             technicalWord: '技術',
             subtitle: '由紅石驅動',
-            belief: '我們的地圖完全由紅石驅動。無模組、無命令方塊，體驗純原版競速。',
+            belief: '我們的地圖完全由紅石驅動。無模組、無指令方塊，體驗純原版競速。',
             learnMore: '了解更多',
             items: {
                 'Overview': {
@@ -295,8 +295,8 @@ export const translations = {
                     label: '三層計時器+移位寄存器',
                     description: '精確到秒的高精度時鐘。使用同步進位邏輯防止顯示殘影。'
                 },
-                '3-bit Adder': {
-                    label: '三位加法器',
+                'Carry Processor': {
+                    label: '進位器',
                     description: '計時器和計算模塊中使用的邏輯組件，處理二進制加法和信號處理。'
                 },
                 'Insertion Sort Module': {
@@ -335,7 +335,7 @@ export const translations = {
                     label: '10物品簡單逆序器',
                     description: '用於逆序物品流的實用模塊，用於組織數據或重置系統狀態。'
                 },
-                'Process Manager (Priority Queue Based)': {
+                'Priority Manager': {
                     label: '進程管理器（基於優先級隊列）',
                     description: '通過隊列管理查詢、輸入和同步等任務來防止邏輯衝突，確保同時只運行一個任務。'
                 },
