@@ -59,7 +59,7 @@ export function Navbar({ logoSrc = `${import.meta.env.BASE_URL}images/logo 1.PNG
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${themeClass} ${mobileMenuOpen ? 'menu-open' : ''}`}>
             <div className="nav-container">
-                <a href="https://mc-ctec.org/" className="nav-logo" target="_blank" rel="noopener noreferrer">
+                <a href="https://mc-ctec.org/" className="nav-logo" rel="noopener noreferrer">
                     <img src={logoSrc} alt="Frost Pursuit" className="logo-img" />
                 </a>
 

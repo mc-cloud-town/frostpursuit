@@ -32,7 +32,7 @@ export function Footer() {
                         <div className="footer-contact">
                             <h3>{t.contactTitle}</h3>
                             <p className="footer-org">{t.ctec}</p>
-                            <a href="https://mc-ctec.org/" target="_blank" rel="noopener noreferrer" className="footer-logo-link">
+                            <a href="https://mc-ctec.org/" rel="noopener noreferrer" className="footer-logo-link">
                                 <img
                                     src={`${import.meta.env.BASE_URL}images/logo 2.png`}
                                     alt="CTEC"
